@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "isOdGu4oUye2sq4scT8hGvCG0VOH9O0Uc0tX5fpnAtbZ6F0y8bQ7L7gcD68noxo6wINJFsK4/p5q/NP9Sd+uMw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\ZiyaadPeerun\\MCB_Backend_Engineer_Assessment_Repos\\McShares API\\McShares API\\McShares API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.0.7\\swashbuckle.aspnetcore.swagger.6.0.7.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.0.7\\swashbuckle.aspnetcore.swaggergen.6.0.7.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.0.7\\swashbuckle.aspnetcore.swaggerui.6.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,26 @@
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\McShares API.exe
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\McShares API.deps.json
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\McShares API.runtimeconfig.json
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\McShares API.runtimeconfig.dev.json
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\McShares API.dll
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\McShares API.pdb
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.csprojAssemblyReference.cache
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.AssemblyInfo.cs
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\staticwebassets\McShares API.StaticWebAssets.Manifest.cache
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\staticwebassets\McShares API.StaticWebAssets.xml
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\scopedcss\bundle\McShares API.styles.css
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.RazorTargetAssemblyInfo.cache
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.csproj.CopyComplete
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.dll
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.pdb
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.genruntimeconfig.cache
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user\source\repos\McShares API\McShares API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user\source\repos\McShares API\McShares API\obj\Debug\netcoreapp3.1\McShares API.MvcApplicationPartsAssemblyInfo.cs
