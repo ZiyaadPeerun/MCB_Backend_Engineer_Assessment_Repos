@@ -28,17 +28,13 @@ namespace McShares_API
         {
             services.AddControllers();
 
+            //Swagger suppport
             services.AddSwaggerGen(
          c =>
          {
              c.SwaggerDoc("v1", new OpenApiInfo { Title = "McShares API", Version = "v1" });
              c.CustomSchemaIds(x => x.FullName);
          });
-
-
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
