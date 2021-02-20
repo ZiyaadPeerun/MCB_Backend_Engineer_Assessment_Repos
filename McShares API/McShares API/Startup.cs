@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using McShares_API.Models;
+using Microsoft.EntityFrameworkCore;
+using McShares_API.Interfaces;
+using McShares_API.Services;
 
 namespace McShares_API
 {
@@ -27,6 +31,13 @@ namespace McShares_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IValidateXMLFile, ValidateXMLFileService>();
+
+            services.AddScoped<ISaveXMLData, SaveXMLDataService>();
+
+            services.AddDbContext<DBContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("Connection")));
 
             //Swagger suppport
             services.AddSwaggerGen(
