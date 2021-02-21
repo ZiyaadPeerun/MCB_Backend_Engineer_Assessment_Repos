@@ -29,8 +29,13 @@ namespace McShares_API.Controllers
         {
             try
             {
-                _ISaveXMLData.save(obj);
-                return Ok("XML data successfully saved to sql server");
+                return _ISaveXMLData.save(obj) ? Ok("XML data successfully saved to sql server") : Ok("Data duplication: Cannot save data to sql server");
+                
+                //if (_ISaveXMLData.save(obj))
+                //{
+                //    return Ok("XML data successfully saved to sql server");
+                //}
+                //    return Ok("Data duplication: Cannot save data to sql server");  
             }
             catch (Exception e)
             {

@@ -1,5 +1,4 @@
 ﻿using McShares_API.Models;
-using NPOI.SS.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +21,7 @@ namespace McShares_API.Interfaces
            // _iValidate = iValidate;
         }
 
-        public void save(UploadFile obj)
+        public bool save(UploadFile obj)
         //public void save(XmlDocument xmlDoc)
         {
             //Boolean isValid = _iValidate.ValidateXmlFile(obj);
@@ -34,13 +33,16 @@ namespace McShares_API.Interfaces
                 XDocument xmlDoc = XDocument.Load(obj.files.OpenReadStream());
                 var xmlDocument=xmlDoc.ToXmlDocument();
 
-
                 RequestDocument requestDocument = new RequestDocument();
-                DocumentData documentData = new DocumentData();
-
+  
                 requestDocument.Doc_Ref = xmlDocument.GetElementsByTagName("Doc_Ref")[0].InnerText;
                 requestDocument.Doc_Date = Convert.ToDateTime(xmlDocument.GetElementsByTagName("Doc_Date")[0].InnerText);
 
+                //check if refDoc exists
+                var isRefDocExist = checkIfEXistDocRef(requestDocument.Doc_Ref);
+
+            if (!isRefDocExist)
+            {
                 _context.requestDocument.Add(requestDocument);
 
                 for (int i = 0; i < xmlDocument.GetElementsByTagName("DataItem_Customer").Count; i++)
@@ -87,12 +89,24 @@ namespace McShares_API.Interfaces
 
                     _context.dataItem_Customer.Add(dataItem_Customer);
                     _context.SaveChanges();
+
                 }
+                return true;
             }
+            return false;
+        }
+
+        
             //else
             //{
             //    //not valid
             //}
+
+            public bool checkIfEXistDocRef(string docRef)
+            {
+                var isExist=_context.requestDocument.Where(df => df.Doc_Ref == docRef).ToList();
+                return isExist.Any() ? true : false;  
+            }
         }
     }
 

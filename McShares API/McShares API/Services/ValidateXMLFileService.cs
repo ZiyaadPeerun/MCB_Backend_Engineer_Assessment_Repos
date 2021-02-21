@@ -20,10 +20,9 @@ namespace McShares_API.Services
         {
             _env = environment;
             _saveXMLData = saveXMLData;
-
         }
 
-        public Boolean ValidateXmlFile(UploadFile obj)
+        public bool ValidateXmlFile(UploadFile obj)
         {
             //Loads the xml file
             XDocument xmlDoc = XDocument.Load(obj.files.OpenReadStream());
@@ -40,27 +39,25 @@ namespace McShares_API.Services
                 Console.WriteLine("{0}", e.Message);
                 errors = true;
             });
-            Console.WriteLine("The Xml document {0}", errors ? "did not validate" : "validated");
+
             
-
-            //if (!errors)
-            //{
-            //    _saveXMLData.save(xmlDoc.ToXmlDocument());
-
-
-            //}
-
-
+            //Age check
+            for (int i = 0; i < xmlDoc.ToXmlDocument().GetElementsByTagName("DataItem_Customer").Count; i++)
+            {
+                if (xmlDoc.ToXmlDocument().GetElementsByTagName("DataItem_Customer")[i].ChildNodes[2].InnerXml != "")
+                {
+                   var dob = Convert.ToDateTime(xmlDoc.ToXmlDocument().GetElementsByTagName("DataItem_Customer")[i].ChildNodes[2].InnerXml);
+                   var now = DateTime.Now;
+                   var age = now - dob;
+                    if (age.TotalDays < 6575)
+                    {
+                        return true;
+                    }
+                }    
+            }
+            Console.WriteLine("The Xml document {0}", errors ? "did not validate" : "validated");
             var returnStatus = errors;
-
             return returnStatus;
-
- 
-
-            //if (!errors)
-            //{
-
-            //}
         }
     }
 

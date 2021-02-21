@@ -10,6 +10,6 @@ namespace McShares_API.Interfaces
 {
     public interface ISaveXMLData
     {
-        public void save(UploadFile xmlDoc);
+        public bool save(UploadFile xmlDoc);
     }
 }

@@ -14,7 +14,7 @@ namespace McShares_API.Models
         public string Customer_Type { get; set; }
 
         [Column(TypeName = "Date")]
-        public DateTime Date_Of_Birth { get; set; }
+        public DateTime? Date_Of_Birth { get; set; }
 
         [Column(TypeName = "Date")]
         public DateTime? Date_Incorp { get; set; }

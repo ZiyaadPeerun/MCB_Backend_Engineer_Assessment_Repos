@@ -1,4 +1,4 @@
-﻿using McShares_API.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace McShares_API.Interfaces
 {
-    public interface IValidateXMLFile
+    public interface IDownloadCSVFile
     {
-        public bool ValidateXmlFile(UploadFile obj);
+        public FileResult downloadCSVFile();
+
     }
 }

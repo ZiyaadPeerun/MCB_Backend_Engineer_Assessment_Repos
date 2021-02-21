@@ -15,6 +15,9 @@ using McShares_API.Models;
 using Microsoft.EntityFrameworkCore;
 using McShares_API.Interfaces;
 using McShares_API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace McShares_API
 {
@@ -33,24 +36,43 @@ namespace McShares_API
             services.AddControllers();
 
             services.AddScoped<IValidateXMLFile, ValidateXMLFileService>();
-
             services.AddScoped<ISaveXMLData, SaveXMLDataService>();
+            services.AddScoped<IQuery, QueryService>();
+            //services.AddScoped<IDownloadCSVFile, downloadCSVFileService>();
 
             services.AddDbContext<DBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("Connection")));
 
-            //Swagger suppport
+            //Swagger support
             services.AddSwaggerGen(
          c =>
          {
              c.SwaggerDoc("v1", new OpenApiInfo { Title = "McShares API", Version = "v1" });
              c.CustomSchemaIds(x => x.FullName);
          });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = Configuration["Jwt:Issuer"],
+            ValidAudience = Configuration["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+        };
+    });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,6 +83,8 @@ namespace McShares_API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MockProvider Service");
             });
+
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 
