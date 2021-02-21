@@ -38,6 +38,7 @@ namespace McShares_API
             services.AddScoped<IValidateXMLFile, ValidateXMLFileService>();
             services.AddScoped<ISaveXMLData, SaveXMLDataService>();
             services.AddScoped<IQuery, QueryService>();
+            services.AddScoped<ILogError, ErrorLogService>();
             //services.AddScoped<IDownloadCSVFile, downloadCSVFileService>();
 
             services.AddDbContext<DBContext>(options =>

@@ -14,12 +14,12 @@ namespace McShares_API.Services
     public class ValidateXMLFileService: IValidateXMLFile
     {
         private readonly IHostingEnvironment _env;
-        private readonly ISaveXMLData _saveXMLData;
+        private readonly ILogError _ilogError;
 
-        public ValidateXMLFileService(IHostingEnvironment environment, ISaveXMLData saveXMLData)
+        public ValidateXMLFileService(IHostingEnvironment environment, ILogError ilogError)
         {
             _env = environment;
-            _saveXMLData = saveXMLData;
+            _ilogError = ilogError;
         }
 
         public bool ValidateXmlFile(UploadFile obj)
@@ -38,6 +38,7 @@ namespace McShares_API.Services
             {
                 Console.WriteLine("{0}", e.Message);
                 errors = true;
+                _ilogError.logError(DateTime.Now, "XML file Validation failed!");
             });
 
             
@@ -51,6 +52,7 @@ namespace McShares_API.Services
                    var age = now - dob;
                     if (age.TotalDays < 6575)
                     {
+                        _ilogError.logError(DateTime.Now, "XML file Validation failed!");
                         return true;
                     }
                 }    

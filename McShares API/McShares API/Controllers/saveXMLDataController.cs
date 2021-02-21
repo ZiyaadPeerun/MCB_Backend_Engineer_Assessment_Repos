@@ -24,6 +24,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize] uncomment for authentication
         [Route("uploadAndSave")]
         public IActionResult uploadAndSave([FromForm] UploadFile obj)
         {

@@ -14,7 +14,7 @@ namespace McShares_API.Controllers
         {
            // _downloadCSVFile = downloadCSVFile;
         }
+        //[Authorize] uncomment for authentication
 
-        
     }
 }

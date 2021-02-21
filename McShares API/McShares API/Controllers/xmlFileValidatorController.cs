@@ -29,6 +29,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize] uncomment for authentication
         [Route("ValidateXmlFile")]
         public IActionResult ValidateXmlFile([FromForm] UploadFile obj)
         {  

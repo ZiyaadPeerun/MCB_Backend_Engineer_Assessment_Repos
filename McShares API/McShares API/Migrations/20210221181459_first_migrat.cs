@@ -3,10 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace McShares_API.Migrations
 {
-    public partial class init_migrat : Migration
+    public partial class first_migrat : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "logErrors",
+                columns: table => new
+                {
+                    errorID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    errorTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_logErrors", x => x.errorID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "requestDocument",
                 columns: table => new
@@ -27,7 +41,7 @@ namespace McShares_API.Migrations
                 {
                     customer_id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Customer_Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date_Of_Birth = table.Column<DateTime>(type: "Date", nullable: false),
+                    Date_Of_Birth = table.Column<DateTime>(type: "Date", nullable: true),
                     Date_Incorp = table.Column<DateTime>(type: "Date", nullable: true),
                     REGISTRATION_NO = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address_Line1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -62,6 +76,9 @@ namespace McShares_API.Migrations
         {
             migrationBuilder.DropTable(
                 name: "dataItem_Customer");
+
+            migrationBuilder.DropTable(
+                name: "logErrors");
 
             migrationBuilder.DropTable(
                 name: "requestDocument");

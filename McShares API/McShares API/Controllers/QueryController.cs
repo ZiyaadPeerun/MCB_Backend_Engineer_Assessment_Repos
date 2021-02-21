@@ -20,6 +20,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpGet]
+        //[Authorize]  
         [Route("getAllRecords")]
         public ActionResult<IEnumerable<string>> getAllRecords()
         {
@@ -36,6 +37,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpGet("{customer_id}")]
+        //[Authorize] uncomment for authentication
         public ActionResult<ReturnQueryModel> getByCustomerID(string customer_id)
         {
             try
@@ -57,6 +59,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpGet]
+        //[Authorize] uncomment for authentication
         [Route("SearchByName")]
         public ActionResult<IQueryable<DataItem_Customer>> SearchByName(string searchTerm)
         {
@@ -73,6 +76,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpPut]
+        //[Authorize] uncomment for authentication 
         [Route("updateNumberShares")]
         public ActionResult Put(string custId, [FromBody] int numShares)
         {
@@ -85,6 +89,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpPut]
+        //[Authorize] uncomment for authentication
         [Route("updateContactNumber")]
         public ActionResult Put(string custId, string contactNumber)
         {
@@ -98,6 +103,7 @@ namespace McShares_API.Controllers
         }
 
         [HttpDelete("{custId}")]
+        //[Authorize] uncomment for authentication
         public ActionResult Delete(string custId)
         {
             try

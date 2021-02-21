@@ -11,9 +11,11 @@ namespace McShares_API.Services
     public class QueryService : IQuery
     {
         private readonly DBContext _context;
-        public QueryService(DBContext dBContext)
+        private readonly ILogError _ilogError;
+        public QueryService(DBContext dBContext, ILogError ilogError)
         {
             _context = dBContext;
+            _ilogError = ilogError;
         }
 
         public List<DataItem_Customer> getListRecords()
@@ -39,6 +41,8 @@ namespace McShares_API.Services
             }
             else
             {
+                //logging error
+                _ilogError.logError(DateTime.Now, "Customer does not exist!");
                 return null;
             }
             return returnQueryModel;
@@ -79,6 +83,7 @@ namespace McShares_API.Services
                 _context.SaveChanges();
                 return true;
             }
+            _ilogError.logError(DateTime.Now, "Unable to update Contact Number");
             return false;
         }
 
@@ -92,6 +97,7 @@ namespace McShares_API.Services
                 _context.SaveChanges();
                 return true;
             }
+            _ilogError.logError(DateTime.Now, "Unable to delete customer");
             return false;
         }
 

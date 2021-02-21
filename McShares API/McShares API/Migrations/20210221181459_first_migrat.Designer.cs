@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace McShares_API.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20210220205543_init_migrat")]
-    partial class init_migrat
+    [Migration("20210221181459_first_migrat")]
+    partial class first_migrat
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,7 @@ namespace McShares_API.Migrations
                     b.Property<DateTime?>("Date_Incorp")
                         .HasColumnType("Date");
 
-                    b.Property<DateTime>("Date_Of_Birth")
+                    b.Property<DateTime?>("Date_Of_Birth")
                         .HasColumnType("Date");
 
                     b.Property<int>("Num_Shares")
@@ -73,6 +73,24 @@ namespace McShares_API.Migrations
                     b.HasIndex("requestDocumentrequest_Document_Id");
 
                     b.ToTable("dataItem_Customer");
+                });
+
+            modelBuilder.Entity("McShares_API.Models.LogErrors", b =>
+                {
+                    b.Property<int>("errorID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("errorTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("errorID");
+
+                    b.ToTable("logErrors");
                 });
 
             modelBuilder.Entity("McShares_API.Models.RequestDocument", b =>
