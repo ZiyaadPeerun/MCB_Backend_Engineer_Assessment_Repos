@@ -28,10 +28,7 @@ namespace McShares_API.Controllers
             {
                 return _ISaveXMLData.save(obj) ? Ok("XML data successfully saved to sql server") : Ok("Data duplication: Cannot save data to sql server");
             }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}");
-            }
+            catch (Exception e) { return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}"); }
         }
     }
 }

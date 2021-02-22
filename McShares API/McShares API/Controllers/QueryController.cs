@@ -30,10 +30,7 @@ namespace McShares_API.Controllers
                 if (list.Any()){ return Ok(list); }
                 else{ return NotFound("No data"); }
             }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}");
-            }
+            catch (Exception e) { return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}"); }
         }
 
         [HttpGet("{customer_id}")]
@@ -44,18 +41,10 @@ namespace McShares_API.Controllers
             {
                 var customer = _Iquery.getByCustomerID(customer_id);
                 if (customer!= null)
-                {
-                    return Ok(customer);
-                }
-                else
-                {
-                    return NotFound("Wrong Customer ID: Please try again.");
-                }
+                { return Ok(customer); }
+                else { return NotFound("Wrong Customer ID: Please try again."); }
             }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}");
-            }       
+            catch (Exception e) { return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}"); }       
         }
 
         [HttpGet]
@@ -69,10 +58,7 @@ namespace McShares_API.Controllers
                 if (customer!=null) { return Ok(customer.ToList()); }
                 else { return NotFound("No Result."); }
             }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}");
-            }
+            catch (Exception e) { return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}");}
         }
 
         [HttpPut]
