@@ -29,9 +29,9 @@ namespace McShares_API.Models
         public string? Contact_Number { get; set; }
         public int Num_Shares { get; set; }
         public decimal Share_Price { get; set; }
-
-        [ForeignKey("DocumentData")]
         public int request_Document_Id { get; set; }
+
+        [ForeignKey("request_Document_Id")]
         public virtual RequestDocument requestDocument { get; set; }
     }
 }

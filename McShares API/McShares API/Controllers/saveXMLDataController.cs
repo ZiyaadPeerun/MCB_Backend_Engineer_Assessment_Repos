@@ -12,14 +12,10 @@ namespace McShares_API.Controllers
 {
     public class saveXMLDataController : Controller
     {
-        //private readonly IHostingEnvironment _env;
-        //private readonly IValidateXMLFile _IValidateXMLFile;
         private readonly ISaveXMLData _ISaveXMLData;
 
         public saveXMLDataController(ISaveXMLData iSaveXMLData)
         {
-            //_env = environment;
-            //_IValidateXMLFile = iValidateXMLFile;
             _ISaveXMLData = iSaveXMLData;
         }
 
@@ -31,22 +27,11 @@ namespace McShares_API.Controllers
             try
             {
                 return _ISaveXMLData.save(obj) ? Ok("XML data successfully saved to sql server") : Ok("Data duplication: Cannot save data to sql server");
-                
-                //if (_ISaveXMLData.save(obj))
-                //{
-                //    return Ok("XML data successfully saved to sql server");
-                //}
-                //    return Ok("Data duplication: Cannot save data to sql server");  
             }
             catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"{e.Message}");
             }
-           
-
-           
-            
-            //return _IValidateXMLFile.ValidateXmlFile(obj) ? Ok("XML document validation failed!") : Ok("XML document has been validated successfully!");
         }
     }
 }

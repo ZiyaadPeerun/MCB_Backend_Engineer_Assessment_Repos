@@ -52,24 +52,23 @@ namespace McShares_API.Migrations
                     Contact_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Num_Shares = table.Column<int>(type: "int", nullable: false),
                     Share_Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    request_Document_Id = table.Column<int>(type: "int", nullable: false),
-                    requestDocumentrequest_Document_Id = table.Column<int>(type: "int", nullable: true)
+                    request_Document_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_dataItem_Customer", x => x.customer_id);
                     table.ForeignKey(
-                        name: "FK_dataItem_Customer_requestDocument_requestDocumentrequest_Document_Id",
-                        column: x => x.requestDocumentrequest_Document_Id,
+                        name: "FK_dataItem_Customer_requestDocument_request_Document_Id",
+                        column: x => x.request_Document_Id,
                         principalTable: "requestDocument",
                         principalColumn: "request_Document_Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_dataItem_Customer_requestDocumentrequest_Document_Id",
+                name: "IX_dataItem_Customer_request_Document_Id",
                 table: "dataItem_Customer",
-                column: "requestDocumentrequest_Document_Id");
+                column: "request_Document_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

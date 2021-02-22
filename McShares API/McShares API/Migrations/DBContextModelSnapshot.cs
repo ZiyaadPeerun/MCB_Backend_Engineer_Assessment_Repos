@@ -60,15 +60,12 @@ namespace McShares_API.Migrations
                     b.Property<string>("Town_City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("requestDocumentrequest_Document_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("request_Document_Id")
                         .HasColumnType("int");
 
                     b.HasKey("customer_id");
 
-                    b.HasIndex("requestDocumentrequest_Document_Id");
+                    b.HasIndex("request_Document_Id");
 
                     b.ToTable("dataItem_Customer");
                 });
@@ -113,7 +110,9 @@ namespace McShares_API.Migrations
                 {
                     b.HasOne("McShares_API.Models.RequestDocument", "requestDocument")
                         .WithMany()
-                        .HasForeignKey("requestDocumentrequest_Document_Id");
+                        .HasForeignKey("request_Document_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("requestDocument");
                 });

@@ -23,9 +23,8 @@ namespace McShares_API.Interfaces
         }
 
         public bool save(UploadFile obj)
-        //public void save(XmlDocument xmlDoc)
         {
-            Boolean isNotValid = _iValidate.ValidateXmlFile(obj);
+            bool isNotValid = _iValidate.ValidateXmlFile(obj);
 
             if (!isNotValid)
             {
@@ -44,6 +43,7 @@ namespace McShares_API.Interfaces
                 if (!isRefDocExist)
                 {
                     _context.requestDocument.Add(requestDocument);
+                    _context.SaveChanges();
 
                     for (int i = 0; i < xmlDocument.GetElementsByTagName("DataItem_Customer").Count; i++)
                     {
@@ -85,34 +85,26 @@ namespace McShares_API.Interfaces
                         dataItem_Customer.Num_Shares = Int32.Parse(xmlDocument.GetElementsByTagName("DataItem_Customer")[i].ChildNodes[7].ChildNodes[0].InnerText);
                         dataItem_Customer.Share_Price = Decimal.Parse(xmlDocument.GetElementsByTagName("DataItem_Customer")[i].ChildNodes[7].ChildNodes[1].InnerText);
 
-                        dataItem_Customer.request_Document_Id = requestDocument.request_Document_Id;
+                        dataItem_Customer.requestDocument = requestDocument;
 
-                        _context.dataItem_Customer.Add(dataItem_Customer);
-                        _context.SaveChanges();
-
+                        var isCustIDExist = checkIfEXistCustomerID(dataItem_Customer.customer_id);
+                        if (!isCustIDExist)
+                        {
+                            _context.dataItem_Customer.Add(dataItem_Customer);
+                            _context.SaveChanges();
+                        }
                     }
                     return true;
                 }
 
-                try
-                {
-                    _ilogError.logError(DateTime.Now, "Data duplication: Data already Exist!");
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
+                try { _ilogError.logError(DateTime.Now, "Data duplication: Data already Exist!"); }
+                catch (Exception){ throw; }
                 return false;
-            }
-
-
-            else
+            } else
             {
                 //XML file not valid
                 _ilogError.logError(DateTime.Now, "XML file Validation failed!");
-                return false;
-              
+                return false;   
             }
 
             bool checkIfEXistDocRef(string docRef)
@@ -120,21 +112,27 @@ namespace McShares_API.Interfaces
                 var isExist = _context.requestDocument.Where(df => df.Doc_Ref == docRef).ToList();
                 return isExist.Any() ? true : false;
             }
+
+            bool checkIfEXistCustomerID(string custID)
+            {
+                var isExist = _context.dataItem_Customer.Where(df => df.customer_id == custID).ToList();
+                return isExist.Any() ? true : false;
+            }
         }
     }
 }
 
-    public static class DocumentExtensions
-    {
-        public static XmlDocument ToXmlDocument(this XDocument xDocument)
-        {
-            var xmlDocument = new XmlDocument();
-            using (var xmlReader = xDocument.CreateReader())
-            {
-                xmlDocument.Load(xmlReader);
-            }
-            return xmlDocument;
-        }
+public static class DocumentExtensions
+{
+   public static XmlDocument ToXmlDocument(this XDocument xDocument)
+   {
+      var xmlDocument = new XmlDocument();
+      using (var xmlReader = xDocument.CreateReader())
+      {
+        xmlDocument.Load(xmlReader);
+      }
+      return xmlDocument;
     }
+}
 
 

@@ -24,6 +24,8 @@ namespace McShares_API.Services
 
         public bool ValidateXmlFile(UploadFile obj)
         {
+            if (obj.files == null){ return true; }
+
             //Loads the xml file
             XDocument xmlDoc = XDocument.Load(obj.files.OpenReadStream());
 
