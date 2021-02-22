@@ -3,3 +3,4 @@ Technologies:
 1. ASP .NET Core 
 2. Entity Framework
 3. SQL SERVER
+OpenAPI Specs: Swagger
